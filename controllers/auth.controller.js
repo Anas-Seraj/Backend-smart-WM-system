@@ -8,7 +8,7 @@ export const signUp = async (req, res, next) => {
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, city } = req.body;
 
     const existingUser = await User.findOne({ email });
 
@@ -22,7 +22,7 @@ export const signUp = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUsers = await User.create(
-      [{ name, email, password: hashedPassword }],
+      [{ name, email, password: hashedPassword, city }],
       { session }
     );
 
@@ -77,9 +77,9 @@ export const signIn = async (req, res, next) => {
       message: "User signed in successfully!!!",
       data: {
         token,
-        user
-      }
-    })
+        user,
+      },
+    });
   } catch (error) {
     next(error);
   }

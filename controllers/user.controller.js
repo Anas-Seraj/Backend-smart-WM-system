@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
 import User from "../models/user.model.js";
-import { USER_ID } from "../config/env.js";
+import { ADMIN_ID } from "../config/env.js";
 
 export const getUsers = async (req, res, next) => {
   try {
 
-    if (req.body.user !== USER_ID) {
+    const {user} = req.body;
+    
+    if (user !== ADMIN_ID) {
       return res.status(401).json({ message: "Unauthorized" });
     }
     
