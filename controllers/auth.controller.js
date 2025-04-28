@@ -8,7 +8,12 @@ export const signUp = async (req, res, next) => {
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
-    const { name, email, password, city } = req.body;
+    const {
+      registerName: name,
+      registerEmail: email,
+      registerPassword: password,
+      registerCity: city,
+    } = req.body;
 
     const existingUser = await User.findOne({ email });
 
