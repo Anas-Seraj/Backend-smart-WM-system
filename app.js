@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import { PORT } from "./config/env.js";
 
 import connectToDatabase from "./database/mongodb.js";
 
@@ -13,6 +12,8 @@ import userRoutes from "./routes/user.routes.js";
 import imageRoutes from "./routes/image.routes.js";
 
 const app = express();
+
+const PORT = process.env.PORT || 5500;
 
 app.use(express.json());
 app.use(cors());
