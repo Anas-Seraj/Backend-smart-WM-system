@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 
 import connectToDatabase from "./database/mongodb.js";
 
@@ -16,7 +15,6 @@ const app = express();
 const PORT = process.env.PORT || 5500;
 
 app.use(express.json());
-app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(arcjetMiddleware);
