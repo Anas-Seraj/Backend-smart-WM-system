@@ -41,9 +41,11 @@ export const signUp = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "User Created Successfully",
-      user: {...newUsers[0], token: token},
+      token,
+      user: newUsers[0],
     });
   } catch (error) {
+    console.log("thereerror:"+error);
     await session.abortTransaction();
     session.endSession();
     next(error);
@@ -77,7 +79,8 @@ export const signIn = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "User signed in successfully!!!",
-      user: {...user, token: token},
+      token,
+      user: user,
     });
   } catch (error) {
     next(error);
