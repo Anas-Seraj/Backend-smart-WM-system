@@ -18,8 +18,6 @@ export const uploadImage = async (req, res) => {
       user: req.body.user,
     });
 
-    console.log(req);
-
     await newImage.save(); // Save in MongoDB
 
     res.status(201).json({
