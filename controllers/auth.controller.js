@@ -41,7 +41,7 @@ export const signUp = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "User Created Successfully",
-      user: {...newUsers[0], token},
+      user: {...newUsers[0], token: token},
     });
   } catch (error) {
     await session.abortTransaction();
@@ -77,7 +77,7 @@ export const signIn = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "User signed in successfully!!!",
-      user: {...user, token},
+      user: {...user, token: token},
     });
   } catch (error) {
     next(error);
